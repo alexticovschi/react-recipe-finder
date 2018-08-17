@@ -1,0 +1,39 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.App-header {
+  position: relative;
+  margin-bottom: 26px;
+  margin-top: 5px;
+  background-color: #143a0d;
+  text-align: center;
+  box-sizing: border-box;
+  height: 246px;
+  padding: 0px;
+  border-radius: 5px;
+  border: 20px solid rgb(198, 224, 194);
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.sweet-loading {
+  display: table;
+  margin: 0 auto;
+  /* margin-top: 120px; */
+}
+.spinner {
+  display: table;
+  margin: 0 auto;  
+}
+
