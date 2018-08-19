@@ -37,3 +37,18 @@ body {
   margin: 0 auto;  
 }
 
+.star > span {
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.yellow-star {
+  cursor: pointer;
+  font-size: 30px;
+  height: 45px;
+  width: 45px;
+  margin-right: 37px;
+  background-color: yellow;
+  border: 1px solid grey;
+  border-radius: 500px;
+}

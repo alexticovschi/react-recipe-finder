@@ -2,7 +2,8 @@ import React, { Fragment, Component } from 'react';
 import { Container, Button, Form, FormGroup, Input } from 'reactstrap';
 
 import axios from 'axios';
-import Recipes from './components/Recipes';
+import RecipeList from './components/RecipeList';
+import FavoriteRecipes from './components/FavoriteRecipes'
 import { ClipLoader } from 'react-spinners';
 
 import './App.css';
@@ -11,6 +12,7 @@ import './App.css';
 class App extends Component {
   state = {
     recipes: [],
+    favorites: [],
     keywords: '',
     loading: false
 }
@@ -65,83 +67,107 @@ componentDidMount() {
     }
   }
 
+  addToFavorites = (recipe) => {
 
-getRecipe = (event) => {
-    event.preventDefault();
-    this.setState({recipes: []});
-    
-    //const proxy = 'https://cors-anywhere.herokuapp.com/';
-    // const proxy = 'https://cryptic-headland-94862.herokuapp.com/';
-    const API_KEY = '4921fea5b819539cd1fd95afc554ea9e';
-    //const API_KEY2 = '462b1cc8d4f2730081462fbc65136320';
-    
-    this.setState({loading: true});
-    
-    axios.get(`http://food2fork.com/api/search?key=${API_KEY}&q=${this.state.keywords}`)
-        .then(response => {
-            const fetchedRecipes = [];
-            console.log(response.data.recipes);
-            response.data.recipes.map(recipe => fetchedRecipes.push(recipe));
-            this.setState({recipes: fetchedRecipes});
-
-            this.setState({loading: false});
-            
-            console.log('[STATE RECIPES]:',this.state.recipes);
-    })
-    .catch(error => {
-        console.log(error);
+    this.setState({
+      favorites: [...this.state.favorites, recipe]
     });
+
+    console.log('[FAVORITE RECIPES]:', this.state.favorites);
+
+  }
+
+  getRecipe = (event) => {
+      event.preventDefault();
+      this.setState({recipes: []});
+      
+      //const proxy = 'https://cors-anywhere.herokuapp.com/';
+      // const proxy = 'https://cryptic-headland-94862.herokuapp.com/';
+      const API_KEY = '4921fea5b819539cd1fd95afc554ea9e';
+      //const API_KEY2 = '462b1cc8d4f2730081462fbc65136320';
+      
+      this.setState({loading: true});
+      
+      axios.get(`http://food2fork.com/api/search?key=${API_KEY}&q=${this.state.keywords}`)
+          .then(response => {
+              const fetchedRecipes = [];
+              console.log(response.data.recipes);
+              response.data.recipes.map(recipe => fetchedRecipes.push(recipe));
+              this.setState({recipes: fetchedRecipes});
+
+              this.setState({loading: false});
+              
+              console.log('[STATE RECIPES]:',this.state.recipes);
+      })
+      .catch(error => {
+          console.log(error);
+      });
+      
+  }
+
+  clearInput = (e) => { 
+      e.target.value= '';
+      this.setState({recipes: []});
+  }
+
+  onInputChange = (event) => {
+      this.setState({ keywords: event.target.value });
+      
+      console.log('[State keywords]', this.state.keywords);
+  }
+
+  render() {
     
-}
+      return (
+          <Fragment>
+              <Container>
+                  {/* <Animated animationIn="zoomIn" animationOut="fadeOut" isVisible={true}> */}
+                      <header className="App-header">
+                          {/* <img src="assets/img/background2.jpg" width="100%" alt=""/> */}
+                          <div className="logo">Recipe Finder</div>
+                          <div className="box">
+                                  
+                              <Form inline className="search" ref={(el) => this.myFormRef = el}>
+                                  <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                      <Input type="text" placeholder="Search recipe..." onChange={this.onInputChange}  />
+                                  </FormGroup>{' '}
+                                  <Button 
+                                      className="btn" 
+                                      style={{backgroundColor:"#21a00b", color:"#fff", outline:"none"}} 
+                                      onClick={this.getRecipe} type="submit">Search Recipe</Button>   
+                              </Form>                                   
+                          </div>
+                      </header>
 
-clearInput = (e) => { 
-    e.target.value= '';
-    this.setState({recipes: []});
-}
+                      <div className='sweet-loading'>
+                          <ClipLoader 
+                              size={100}
+                              color={'#21a00b'} 
+                              loading={this.state.loading} />
+                      </div>
+                      
+                      <RecipeList 
+                          keywords={this.state.keywords} 
+                          recipes={this.state.recipes}
+                          favorites={this.state.favorites} 
+                          addToFavorites={this.addToFavorites} /> 
 
-onInputChange = (event) => {
-    this.setState({ keywords: event.target.value });
-    
-    console.log('[State keywords]', this.state.keywords);
-}
-
-render() {
-    return (
-        <Fragment>
-            <Container>
-                {/* <Animated animationIn="zoomIn" animationOut="fadeOut" isVisible={true}> */}
-                    <header className="App-header">
-                        {/* <img src="assets/img/background2.jpg" width="100%" alt=""/> */}
-                        <div className="logo">Recipe Finder</div>
-                         <div className="box">
-                                
-                            <Form inline className="search" ref={(el) => this.myFormRef = el}>
-                                <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                                    <Input type="text" placeholder="Search recipe..." onChange={this.onInputChange}  />
-                                </FormGroup>{' '}
-                                <Button 
-                                    className="btn" 
-                                    style={{backgroundColor:"#21a00b", color:"#fff", outline:"none"}} 
-                                    onClick={this.getRecipe} type="submit">Search Recipe</Button>   
-                            </Form>                                   
-                        </div>
-                    </header>
-
-                    <div className='sweet-loading'>
-                        <ClipLoader 
-                            size={100}
-                            color={'#21a00b'} 
-                            loading={this.state.loading} />
-                    </div>
+         
+                          
+                      <div>
+                      </div>
                     
-                    <Recipes 
+                      <FavoriteRecipes
                         keywords={this.state.keywords} 
-                        recipes={this.state.recipes} /> 
-                
-            </Container>
-        </Fragment>
-    )
-}
+                        recipes={this.state.recipes}
+                        favorites={this.state.favorites}
+                        addToFavorites={this.addToFavorites}
+                      />
+                  
+              </Container>
+          </Fragment>
+      )
+  }
 
 }
 
