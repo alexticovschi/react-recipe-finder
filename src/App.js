@@ -109,7 +109,7 @@ componentDidMount() {
                 const fetchedRecipes = [];
                 //console.log(response.data.recipes);
                 response.data.recipes.map(recipe => fetchedRecipes.push(recipe));
-                this.props.setRecipes(response);
+                this.props.setRecipes(response.data.recipes);
 
                 this.setState({loading: false});
                 
