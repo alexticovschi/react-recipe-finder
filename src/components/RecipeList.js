@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RecipeItem from './RecipeItem';
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom';
 
 class RecipeList extends Component {
     render() {
@@ -24,6 +25,13 @@ class RecipeList extends Component {
     
         return (
             <div>
+                {
+                    this.props.favoriteRecipes.length > 0 ?
+                        <h4 className="link" style={{textAlign: 'center', marginBottom: '10px'}}><Link to='/favorites'>Favorite Recipes</Link></h4>
+                    :
+                        <div></div>
+                }
+
                 {recipes.map((recipe, index) => (
                     <RecipeItem
                         key={index}

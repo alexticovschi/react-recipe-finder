@@ -1,6 +1,8 @@
 import React from 'react';
 import RecipeItem from './RecipeItem';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Container} from 'reactstrap';
 
 const FavoriteRecipes = ({ favoriteRecipes, keywords }) => {
     //console.log('[favorites]', favorites);
@@ -22,13 +24,10 @@ const FavoriteRecipes = ({ favoriteRecipes, keywords }) => {
     }
 
     return (
-        <div>
-            {
-                favoriteRecipes.length > 0 ?
-                    <h2 style={{textAlign:'center' }}>My Favorite Recipes</h2>
-                :
-                    <div></div>
-            }
+        <Container>
+            <h4 className="link"><Link to='/'>Home</Link></h4>
+
+            <h2 className="fav-link logo" style={{textAlign:'center', color: '#21a00b', marginBottom: '60px' }}>My Favorite Recipes</h2>
 
             {favoriteRecipes && favoriteRecipes.map((recipe, index) => (
                 <RecipeItem
@@ -45,8 +44,7 @@ const FavoriteRecipes = ({ favoriteRecipes, keywords }) => {
                     favoriteButton={false}
                 />
             ))}
-            
-        </div>
+        </Container>
     )
 }
 

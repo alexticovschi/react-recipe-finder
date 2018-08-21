@@ -5,7 +5,6 @@ import { Container, Button, Form, FormGroup, Input } from 'reactstrap';
 
 import axios from 'axios';
 import RecipeList from './components/RecipeList';
-import FavoriteRecipes from './components/FavoriteRecipes'
 import { ClipLoader } from 'react-spinners';
 
 import './App.css';
@@ -13,7 +12,6 @@ import './App.css';
 
 class App extends Component {
   state = {
-    keywords: '',
     loading: false
   }
 
@@ -133,16 +131,7 @@ class App extends Component {
                 loading={this.state.loading} />
           </div>
                       
-          <RecipeList 
-            keywords={this.state.keywords} 
-            recipes={this.state.recipes}
-            favorites={this.state.favorites} 
-            addToFavorites={this.addToFavorites} /> 
-                    
-            <FavoriteRecipes
-              keywords={this.state.keywords} 
-              favorites={this.props.favoriteRecipes}
-            />
+          <RecipeList /> 
                   
         </Container>
       </Fragment>

@@ -50,3 +50,11 @@ body {
   width: 45px;
   color: orange;
 }
+
+.fav-link {
+  margin-bottom: 30px;
+  border-top: 2px solid #21a00b;
+  border-bottom: 2px solid #21a00b;
+  text-align: center;
+  padding: 10px 0px;
+}
