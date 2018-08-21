@@ -1,4 +1,6 @@
 import React, { Fragment, Component } from 'react';
+import { connect } from 'react-redux';
+import { setRecipes } from './actions';
 import { Container, Button, Form, FormGroup, Input } from 'reactstrap';
 
 import axios from 'axios';
@@ -88,20 +90,34 @@ componentDidMount() {
       
       this.setState({loading: true});
       
-      axios.get(`http://food2fork.com/api/search?key=${API_KEY}&q=${this.state.keywords}`)
-          .then(response => {
-              const fetchedRecipes = [];
-              console.log(response.data.recipes);
-              response.data.recipes.map(recipe => fetchedRecipes.push(recipe));
-              this.setState({recipes: fetchedRecipes});
+    //   axios.get(`http://food2fork.com/api/search?key=${API_KEY}&q=${this.state.keywords}`)
+    //       .then(response => {
+    //           const fetchedRecipes = [];
+    //           console.log(response.data.recipes);
+    //           response.data.recipes.map(recipe => fetchedRecipes.push(recipe));
+    //           this.setState({recipes: fetchedRecipes});
 
-              this.setState({loading: false});
+    //           this.setState({loading: false});
               
-              console.log('[STATE RECIPES]:',this.state.recipes);
-      })
-      .catch(error => {
-          console.log(error);
-      });
+    //           console.log('[STATE RECIPES]:',this.state.recipes);
+    //   })
+    //   .catch(error => {
+    //       console.log(error);
+    //   });
+        axios.get(`http://food2fork.com/api/search?key=${API_KEY}&q=${this.state.keywords}`)
+            .then(response => {
+                const fetchedRecipes = [];
+                //console.log(response.data.recipes);
+                response.data.recipes.map(recipe => fetchedRecipes.push(recipe));
+                this.props.setRecipes(response);
+
+                this.setState({loading: false});
+                
+                //console.log('[STATE RECIPES]:',this.state.recipes);
+        })
+        .catch(error => {
+            console.log(error);
+        })
       
   }
 
@@ -113,7 +129,7 @@ componentDidMount() {
   onInputChange = (event) => {
       this.setState({ keywords: event.target.value });
       
-      console.log('[State keywords]', this.state.keywords);
+      //console.log('[State keywords]', this.state.keywords);
   }
 
   render() {
@@ -157,12 +173,12 @@ componentDidMount() {
                       <div>
                       </div>
                     
-                      <FavoriteRecipes
+                      {/* <FavoriteRecipes
                         keywords={this.state.keywords} 
                         recipes={this.state.recipes}
                         favorites={this.state.favorites}
                         addToFavorites={this.addToFavorites}
-                      />
+                      /> */}
                   
               </Container>
           </Fragment>
@@ -171,4 +187,8 @@ componentDidMount() {
 
 }
 
-export default App;
+const actions = {
+    setRecipes
+}
+
+export default connect(null, actions)(App);

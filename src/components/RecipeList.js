@@ -3,7 +3,7 @@ import RecipeItem from './RecipeItem';
 
 const RecipeList = ({recipes, favorites, keywords, addToFavorites}) => {
     
-    console.log('[recipes]', recipes);
+    //console.log('[recipes]', recipes);
     
     const limitRecipeTitle = (title, limit = 17) => {
         const newTitle = [];

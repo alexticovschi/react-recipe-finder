@@ -2,7 +2,7 @@ import React from 'react';
 import RecipeItem from './RecipeItem';
 
 const FavoriteRecipes = ({recipes, favorites, keywords, addToFavorites}) => {
-    console.log('[favorites]', favorites);
+    //console.log('[favorites]', favorites);
     
     const limitRecipeTitle = (title, limit = 17) => {
         const newTitle = [];
