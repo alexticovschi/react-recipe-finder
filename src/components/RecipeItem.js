@@ -3,9 +3,12 @@ import { Col, Card, CardImg, CardBody, CardTitle, CardSubtitle, CardDeck } from 
 import ScrollAnimation from 'react-animate-on-scroll';
 import Modal from './Modal';
 
+import { connect } from 'react-redux';
+import { favoriteRecipe } from '../actions';
+
 
 const RecipeItem = (props) => {
-  const {id, favorites, keyId, recipe, image_url, title, publisher_url, publisher, source_url, keywords, addToFavorites, limitRecipeTitle} = props; 
+  const {id, keyId, recipe, image_url, title, publisher_url, publisher, source_url, keywords, limitRecipeTitle} = props; 
   
   return (
     <Fragment>
@@ -19,7 +22,7 @@ const RecipeItem = (props) => {
                             <CardSubtitle 
                                 style={{fontSize: "13px"}}>
                                 Publisher: <a href={publisher_url} target="_blank">{publisher}</a>
-                                <div className="star" onClick={() => addToFavorites(recipe)}>
+                                <div className="star" onClick={() => props.favoriteRecipe(recipe)}>
                                     <span> &#9733; </span>
                                 </div>
                             </CardSubtitle>
@@ -42,4 +45,4 @@ const RecipeItem = (props) => {
   )
 }
 
-export default RecipeItem;
+export default connect(null, { favoriteRecipe })(RecipeItem);

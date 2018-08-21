@@ -13,8 +13,6 @@ import './App.css';
 
 class App extends Component {
   state = {
-    recipes: [],
-    favorites: [],
     keywords: '',
     loading: false
 }
@@ -69,20 +67,20 @@ componentDidMount() {
     }
   }
 
-  addToFavorites = (recipe) => {
+//   addToFavorites = (recipe) => {
 
-    this.setState({
-      favorites: [...this.state.favorites, recipe]
-    });
+//     this.setState({
+//       favorites: [...this.state.favorites, recipe]
+//     });
 
-    console.log('[FAVORITE RECIPES]:', this.state.favorites);
+//     console.log('[FAVORITE RECIPES]:', this.state.favorites);
 
-  }
+//   }
 
   getRecipe = (event) => {
       event.preventDefault();
       this.setState({recipes: []});
-      
+
       //const proxy = 'https://cors-anywhere.herokuapp.com/';
       // const proxy = 'https://cryptic-headland-94862.herokuapp.com/';
       const API_KEY = '4921fea5b819539cd1fd95afc554ea9e';
@@ -157,7 +155,7 @@ componentDidMount() {
 
                       <div className='sweet-loading'>
                           <ClipLoader 
-                              size={100}
+                              size={80}
                               color={'#21a00b'} 
                               loading={this.state.loading} />
                       </div>

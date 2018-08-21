@@ -1,7 +1,7 @@
 import React from 'react';
 import RecipeItem from './RecipeItem';
 
-const FavoriteRecipes = ({recipes, favorites, keywords, addToFavorites}) => {
+const FavoriteRecipes = ({recipes, favoriteRecipes, keywords, addToFavorites}) => {
     //console.log('[favorites]', favorites);
     
     const limitRecipeTitle = (title, limit = 17) => {
@@ -24,7 +24,7 @@ const FavoriteRecipes = ({recipes, favorites, keywords, addToFavorites}) => {
         <div>
             <h2 style={{textAlign:'center' }}>My Favorite Recipes</h2>
 
-            {favorites && favorites.map(recipe => (
+            {favoriteRecipes && favoriteRecipes.map(recipe => (
                 <RecipeItem
                     key={recipe.title}
                     image_url={recipe.image_url}
@@ -36,7 +36,6 @@ const FavoriteRecipes = ({recipes, favorites, keywords, addToFavorites}) => {
                     source_url={recipe.source_url}
                     recipes={recipes}
                     keywords={keywords}
-                    favorites={favorites}
                     addToFavorites={addToFavorites}
                     limitRecipeTitle={limitRecipeTitle}
                 />
