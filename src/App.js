@@ -5,7 +5,7 @@ import { Container, Button, Form, FormGroup, Input } from 'reactstrap';
 
 import axios from 'axios';
 import RecipeList from './components/RecipeList';
-// import FavoriteRecipes from './components/FavoriteRecipes'
+import FavoriteRecipes from './components/FavoriteRecipes'
 import { ClipLoader } from 'react-spinners';
 
 import './App.css';
@@ -139,12 +139,10 @@ class App extends Component {
             favorites={this.state.favorites} 
             addToFavorites={this.addToFavorites} /> 
                     
-            {/* <FavoriteRecipes
+            <FavoriteRecipes
               keywords={this.state.keywords} 
-              recipes={this.state.recipes}
-              favorites={this.state.favorites}
-              addToFavorites={this.addToFavorites}
-            /> */}
+              favorites={this.props.favoriteRecipes}
+            />
                   
         </Container>
       </Fragment>

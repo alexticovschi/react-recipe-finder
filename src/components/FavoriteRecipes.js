@@ -1,7 +1,8 @@
 import React from 'react';
 import RecipeItem from './RecipeItem';
+import { connect } from 'react-redux';
 
-const FavoriteRecipes = ({recipes, favoriteRecipes, keywords, addToFavorites}) => {
+const FavoriteRecipes = ({ favoriteRecipes, keywords }) => {
     //console.log('[favorites]', favorites);
     
     const limitRecipeTitle = (title, limit = 17) => {
@@ -22,11 +23,16 @@ const FavoriteRecipes = ({recipes, favoriteRecipes, keywords, addToFavorites}) =
 
     return (
         <div>
-            <h2 style={{textAlign:'center' }}>My Favorite Recipes</h2>
+            {
+                favoriteRecipes.length > 0 ?
+                    <h2 style={{textAlign:'center' }}>My Favorite Recipes</h2>
+                :
+                    <div></div>
+            }
 
-            {favoriteRecipes && favoriteRecipes.map(recipe => (
+            {favoriteRecipes && favoriteRecipes.map((recipe, index) => (
                 <RecipeItem
-                    key={recipe.title}
+                    key={index}
                     image_url={recipe.image_url}
                     title={recipe.title}
                     publisher_url={recipe.publisher_url}
@@ -34,10 +40,9 @@ const FavoriteRecipes = ({recipes, favoriteRecipes, keywords, addToFavorites}) =
                     id={recipe.recipe_id}
                     keyId={recipe.recipe_id}
                     source_url={recipe.source_url}
-                    recipes={recipes}
                     keywords={keywords}
-                    addToFavorites={addToFavorites}
                     limitRecipeTitle={limitRecipeTitle}
+                    favoriteButton={false}
                 />
             ))}
             
@@ -45,4 +50,10 @@ const FavoriteRecipes = ({recipes, favoriteRecipes, keywords, addToFavorites}) =
     )
 }
 
-export default FavoriteRecipes;
+const mapStateToProps = (state) => {
+    return {
+        favoriteRecipes: state.favoriteRecipes
+    }
+}
+
+export default connect(mapStateToProps, null)(FavoriteRecipes);

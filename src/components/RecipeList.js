@@ -40,6 +40,7 @@ class RecipeList extends Component {
                         favorites={favorites}
                         addToFavorites={addToFavorites}
                         limitRecipeTitle={limitRecipeTitle}
+                        favoriteButton={true}
                     />
                 ))}
                 

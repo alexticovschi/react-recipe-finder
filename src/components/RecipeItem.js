@@ -32,7 +32,6 @@ class RecipeItem extends Component {
 
         return (
           <Fragment>
-              
               <Col md={4} sm={6} xs={4}>
                   <ScrollAnimation animateIn="zoomIn" animateOnce>
                       <CardDeck style={{border: "1px solid #ccc", padding:"20px 5px"}}>
@@ -44,18 +43,19 @@ class RecipeItem extends Component {
                                       style={{fontSize: "13px"}}>
                                       Publisher: <a href={publisher_url} target="_blank">{publisher}</a>
                                       {
-                                        this.state.favorited ? 
-                                            <div className="yellow-star" title="Already Added to Favorites">
-                                                <span> &#9733; </span>
-                                            </div>
-                                        : 
-                                            <div className="star" title="Add to Favorites" onClick={() => this.favorite(recipe)}>
-                                                <span> &#9733; </span>
-                                            </div>
+                                          this.props.favoriteButton ? 
+                                                this.state.favorited ? 
+                                                    <div className="yellow-star" title="Already Added to Favorites">
+                                                        <span> &#9733; </span>
+                                                    </div>
+                                                : 
+                                                    <div className="star" title="Add to Favorites" onClick={() => this.favorite(recipe)}>
+                                                        <span> &#9733; </span>
+                                                    </div>
+                                            : 
+                                                <div></div>
                                       }
-                                      
-                                  </CardSubtitle>
-                                  <Modal
+                                    <Modal
                                       key={keyId}
                                       keywords={keywords}
                                       id={id}
@@ -64,7 +64,10 @@ class RecipeItem extends Component {
                                       publisher_name={publisher}
                                       image_url={image_url}
                                       source_url={source_url}
-                                      />                   
+                                      /> 
+                                      
+                                  </CardSubtitle>
+                                                    
                               </CardBody>
                           </Card>
                       </CardDeck>
