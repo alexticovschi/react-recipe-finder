@@ -5,14 +5,15 @@ import { Container, Button, Form, FormGroup, Input } from 'reactstrap';
 
 import axios from 'axios';
 import RecipeList from './components/RecipeList';
-import { ClipLoader } from 'react-spinners';
-
+import { PropagateLoader } from 'react-spinners';
 import './App.css';
 
+const API_KEY = '4921fea5b819539cd1fd95afc554ea9e';
 
 class App extends Component {
   state = {
-    loading: false
+    loading: false,
+    recipes: []
   }
 
   componentDidMount() {
@@ -67,18 +68,16 @@ class App extends Component {
 
   getRecipe = (event) => {
     event.preventDefault();
-    this.setState({recipes: []});
+    // this.setState({recipes: []});
 
-    //const proxy = 'https://cors-anywhere.herokuapp.com/';
+    const proxy = 'https://cors-anywhere.herokuapp.com/';
     // const proxy = 'https://cryptic-headland-94862.herokuapp.com/';
-    const API_KEY = '4921fea5b819539cd1fd95afc554ea9e';
-    //const API_KEY2 = '462b1cc8d4f2730081462fbc65136320';
       
     this.setState({loading: true});
-      axios.get(`http://food2fork.com/api/search?key=${API_KEY}&q=${this.state.keywords}`)
+      axios.get(`${proxy}https://food2fork.com/api/search?key=${API_KEY}&q=${this.state.keywords}`)
         .then(response => {
           const fetchedRecipes = [];
-          //console.log(response.data.recipes);
+          console.log(response);
           response.data.recipes.map(recipe => fetchedRecipes.push(recipe));
           this.props.setRecipes(response.data.recipes);
 
@@ -109,24 +108,25 @@ class App extends Component {
           {/* <Animated animationIn="zoomIn" animationOut="fadeOut" isVisible={true}> */}
           <header className="App-header">
             {/* <img src="assets/img/background2.jpg" width="100%" alt=""/> */}
-            <div className="logo">Recipe Finder</div>
+            <div className="app-title">Recipe Finder</div>
             <div className="box">
                                   
               <Form inline className="search" ref={(el) => this.myFormRef = el}>
-                <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                  <Input type="text" placeholder="Search recipe..." onChange={this.onInputChange}  />
+                <FormGroup sm={12} md={12} lg={12}>
+                  <Input type="text" placeholder="Search recipe or enter ingredients..." onChange={this.onInputChange}  />
                 </FormGroup>{' '}
+                
                 <Button 
-                  className="btn" 
                   style={{backgroundColor:"#21a00b", color:"#fff", outline:"none"}} 
-                  onClick={this.getRecipe} type="submit">Search Recipe</Button>   
+                  onClick={this.getRecipe} type="submit">
+                    <img className="search-icon" src="/assets/img/search-icon.png" alt=""/>
+                  </Button>   
               </Form>                                   
             </div>
           </header>
 
-          <div className='sweet-loading'>
-              <ClipLoader 
-                size={80}
+          <div className='propagate-loader'>
+              <PropagateLoader 
                 color={'#21a00b'} 
                 loading={this.state.loading} />
           </div>

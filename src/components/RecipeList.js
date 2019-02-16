@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 
 class RecipeList extends Component {
+    
     render() {
         console.log('this.props', this.props);
         const { recipes, keywords, favorites, addToFavorites } = this.props;
@@ -24,7 +25,7 @@ class RecipeList extends Component {
         }
     
         return (
-            <div>
+            <div className="recipe-list-container">
                 {
                     this.props.favoriteRecipes.length > 0 ?
                         <h4 className="link" style={{textAlign: 'center', marginBottom: '10px'}}><Link to='/favorites'>Favorite Recipes</Link></h4>

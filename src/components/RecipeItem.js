@@ -34,10 +34,10 @@ class RecipeItem extends Component {
           <Fragment>
               <Col md={4} sm={6} xs={4}>
                   <ScrollAnimation animateIn="zoomIn" animateOnce>
-                      <CardDeck style={{border: "1px solid #ccc", padding:"20px 5px"}}>
+                      <CardDeck>
                           <Card body className="text-center">
                               <CardImg top width="100%" src={image_url} alt="Card image cap" />
-                              <CardBody  style={{ padding: "10px"}}>
+                              <CardBody>
                                   <CardTitle style={{ fontSize: "14px", marginTop:"16px"}}>{limitRecipeTitle(title)}</CardTitle>
                                   <CardSubtitle 
                                       style={{fontSize: "13px"}}>

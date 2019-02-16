@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: 'Roboto'
+    font-family: 'Roboto';
 }
 
 .box {
@@ -9,10 +9,6 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
-/* .header_btn:hover {
-    background-color: #50a858 !important;
-} */
 
 
 .btn{
@@ -68,16 +64,33 @@ body {
     padding: 10px 0px;
 }
 
+.search-icon {
+    height: 26px;
+    padding: 3px;
+}
+
+.form-inline .form-control {
+    width: 350px !important;
+    height: 40px;
+}
+
+.recipe-list-container {
+    margin-top: 26px;
+}
+
+
+
 @media (max-width:768px) {
-    .logo {
-        font-size: 82px !important;
+    .app-title {
+        font-size: 100px !important;
     }
     
 }
 
-@media (max-width:420px) {
-    .logo {
-        font-size: 72px !important;
+@media (max-width:475px) {
+    .app-title {
+        margin-top: 10px;
+        font-size: 82px !important;
     }
     .col-md-4 .card-deck { 
         height: 440px !important;
@@ -85,20 +98,24 @@ body {
     .col-md-4 .card-deck img {
         height: 270px !important;
     }
-    
+
+    .form-inline .form-control {
+        width: 220px !important;
+    }
+
+
 }
 
 @media (max-width:320px) {
-    .logo {
-        font-size: 63px !important;
+    .app-title {
+        font-size: 73px !important;
     }
 }
 
 
-.logo {
-    padding-top: 10px;
-    color: #fff;
-    font-size: 100px;
+.app-title {
+    color: #21a00b;
+    font-size: 120px;
     font-family: 'Tangerine', cursive;
 }
  
@@ -136,23 +153,27 @@ li.leaf {
 
 .col-md-4 .card-deck {
     margin-bottom: 34px;
-    height: 510px;
+    height: 460px;
+    width: 100%;
     box-sizing: border-box;
     border: "1px solid #ccc";
     border-radius: 5px;
     transition: all 200ms ease-in;
-    transform: scale(1); 
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
+.col-md-4 .card-body {
+    padding: 0px 0px;
+}
+
 .col-md-4 .card-deck img {
-    height: 320px;
+    height: 290px;
+    width: 100%;
 }
 
 .card-deck:hover {
-    background-color: rgb(229, 236, 230);
     transition: all 200ms ease-in;
-    transform: scale(1.1);
+    transform: scale(1.02);
 }
 
 .container {

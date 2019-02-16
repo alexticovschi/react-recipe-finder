@@ -27,7 +27,7 @@ const FavoriteRecipes = ({ favoriteRecipes, keywords }) => {
         <Container>
             <h4 className="link"><Link to='/'>Home</Link></h4>
 
-            <h2 className="fav-link logo" style={{textAlign:'center', color: '#21a00b', marginBottom: '60px' }}>My Favorite Recipes</h2>
+            <h2 className="fav-link app-title" style={{textAlign:'center', color: '#21a00b', marginBottom: '60px' }}>My Favorite Recipes</h2>
 
             {favoriteRecipes && favoriteRecipes.map((recipe, index) => (
                 <RecipeItem

@@ -9,32 +9,25 @@ body {
   position: relative;
   margin-bottom: 26px;
   margin-top: 5px;
-  background-color: #143a0d;
+  /* background-color: #143a0d; */
   text-align: center;
   box-sizing: border-box;
   height: 246px;
   padding: 0px;
   border-radius: 5px;
-  border: 20px solid rgb(198, 224, 194);
+  border-top: 4px solid #21a00b;
+  border-bottom: 4px solid #21a00b;
   color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-.sweet-loading {
+.propagate-loader {
   display: table;
   margin: 0 auto;
-  /* margin-top: 120px; */
 }
-.spinner {
+.propagate-loader-modal {
   display: table;
-  margin: 0 auto;  
+  margin: 0 auto; 
+  padding: 10px 0; 
 }
 
 .star > span {
