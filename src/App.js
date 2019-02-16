@@ -13,10 +13,13 @@ const API_KEY = '4921fea5b819539cd1fd95afc554ea9e';
 class App extends Component {
   state = {
     loading: false,
-    recipes: []
+    recipes: [],
+    trendingRecipes: []
   }
 
   componentDidMount() {
+    this.getTrendingRecipes();
+
     this.hydrateStateWithLocalStorage();
 
     // add event listener to save state to localStorage
@@ -66,9 +69,29 @@ class App extends Component {
     }
   }
 
+  getTrendingRecipes = () => {
+    this.setState({
+      trendingRecipes: [],
+    });
+
+    const proxy = 'https://cors-anywhere.herokuapp.com/';
+    // const proxy = 'https://cryptic-headland-94862.herokuapp.com/';
+    
+    axios.get(`${proxy}https://food2fork.com/api/search?key=${API_KEY}&trending`)
+      .then(response => {
+        const fetchedRecipes = [];
+        response.data.recipes.map(recipe => fetchedRecipes.push(recipe));
+        this.props.setRecipes(response.data.recipes);
+        this.setState({loading: false});
+      })
+      .catch(error => {
+        console.log(error);
+    })  
+  }
+
   getRecipe = (event) => {
     event.preventDefault();
-    // this.setState({recipes: []});
+    this.setState({recipes: []});
 
     const proxy = 'https://cors-anywhere.herokuapp.com/';
     // const proxy = 'https://cryptic-headland-94862.herokuapp.com/';
