@@ -28,7 +28,7 @@ class RecipeList extends Component {
             <div className="recipe-list-container">
                 {
                     this.props.favoriteRecipes.length > 0 ?
-                        <h4 className="link" style={{textAlign: 'center', marginBottom: '10px'}}><Link to='/favorites'>Favorite Recipes</Link></h4>
+                        <h4 className="link" style={{textAlign: 'center', marginBottom: '20px'}}><Link to='/favorites'>Favorite Recipes</Link></h4>
                     :
                         <div></div>
                 }

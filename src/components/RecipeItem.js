@@ -32,13 +32,13 @@ class RecipeItem extends Component {
 
         return (
           <Fragment>
-              <Col md={4} sm={6} xs={4}>
+              <Col md={3} sm={6} xs={4}>
                   <ScrollAnimation animateIn="zoomIn" animateOnce>
                       <CardDeck>
                           <Card body className="text-center">
                               <CardImg top width="100%" src={image_url} alt="Card image cap" />
                               <CardBody>
-                                  <CardTitle style={{ fontSize: "14px", marginTop:"16px"}}>{limitRecipeTitle(title)}</CardTitle>
+                                  <CardTitle style={{ fontSize: "15.5px", marginTop:"16px"}}>{limitRecipeTitle(title)}</CardTitle>
                                   <CardSubtitle 
                                       style={{fontSize: "13px"}}>
                                       Publisher: <a href={publisher_url} target="_blank">{publisher}</a>

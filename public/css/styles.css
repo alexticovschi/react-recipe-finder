@@ -82,6 +82,10 @@ body {
     margin-top: 26px;
 }
 
+.modal-dialog {
+    width: 800px !important;
+}
+
 
 
 @media (max-width:768px) {
@@ -96,10 +100,10 @@ body {
         margin-top: 10px;
         font-size: 82px !important;
     }
-    .col-md-4 .card-deck { 
+    .col-md-3 .card-deck { 
         height: 440px !important;
     }
-    .col-md-4 .card-deck img {
+    .col-md-3 .card-deck img {
         height: 270px !important;
     }
 
@@ -155,9 +159,9 @@ li.leaf {
     margin-top: -94px;
 }
 
-.col-md-4 .card-deck {
+.col-md-3 .card-deck {
     margin-bottom: 34px;
-    height: 460px;
+    height: 370px;
     width: 100%;
     box-sizing: border-box;
     border: "1px solid #ccc";
@@ -166,12 +170,12 @@ li.leaf {
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
-.col-md-4 .card-body {
+.col-md-3 .card-body {
     padding: 0px 0px;
 }
 
-.col-md-4 .card-deck img {
-    height: 290px;
+.col-md-3 .card-deck img {
+    height: 220px;
     width: 100%;
 }
 
