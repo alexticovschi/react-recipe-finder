@@ -55,7 +55,7 @@ class MyModal extends Component {
   
       return (
         <div>
-          <Button className="btn" style={{backgroundColor:"#21a00b", color:"#fff", outline: "none", marginTop:"22px", marginBottom:"10px"}} onClick={this.handleShow} block>
+          <Button className="btn" style={{backgroundColor:"#21a00b", color:"#fff", outline: "none", marginTop:"30px"}} onClick={this.handleShow} block>
             View Recipe
           </Button>
           <Modal show={this.state.show} onHide={this.handleClose}>
