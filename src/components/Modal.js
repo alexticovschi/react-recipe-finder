@@ -3,7 +3,7 @@ import { Modal } from 'react-bootstrap';
 import { Button } from 'reactstrap';
 
 import axios from 'axios';
-import { ClipLoader } from 'react-spinners';
+import { PropagateLoader } from 'react-spinners';
 import { Animated } from "react-animated-css";
 
 
@@ -25,17 +25,15 @@ class MyModal extends Component {
 
     getRecipe = (id) => {
       //const proxy = 'https://cryptic-headland-94862.herokuapp.com/';
-      //const proxy = 'https://cors-anywhere.herokuapp.com/';
+      const proxy = 'https://cors-anywhere.herokuapp.com/';
 
       const API_KEY = '4921fea5b819539cd1fd95afc554ea9e';
-      //const API_KEY2 = '462b1cc8d4f2730081462fbc65136320';
 
       this.setState({loading: true});
 
-      axios.get(`http://food2fork.com/api/get?key=${API_KEY}&rId=${id}`)
+      axios.get(`${proxy}http://food2fork.com/api/get?key=${API_KEY}&rId=${id}`)
         .then(response => {
           
-
           const fetchedIngredients = [];
           //console.log('[Ingredients]',response.data.recipe.ingredients);
           response.data.recipe.ingredients.map(ing => fetchedIngredients.push(ing));
@@ -97,9 +95,8 @@ class MyModal extends Component {
               
               <hr />
               <p className="text-center" style={{fontSize: "21px", backgroundColor: "#21a00b", color: "#fff", padding:"5px 0px"}}> *** Ingredients *** </p>
-              <div className='spinner'>
-                <ClipLoader
-                  size={70}
+              <div className='propagate-loader-modal'>
+                <PropagateLoader
                   color={'#21a00b'} 
                   loading={this.state.loading} 
                 />
