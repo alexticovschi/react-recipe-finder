@@ -12,9 +12,7 @@ const API_KEY = '4921fea5b819539cd1fd95afc554ea9e';
 
 class App extends Component {
   state = {
-    loading: false,
-    recipes: [],
-    trendingRecipes: []
+    loading: false
   }
 
   componentDidMount() {
@@ -70,13 +68,11 @@ class App extends Component {
   }
 
   getTrendingRecipes = () => {
-    this.setState({
-      trendingRecipes: [],
-    });
+    this.setState({ trendingRecipes: [] });
 
     const proxy = 'https://cors-anywhere.herokuapp.com/';
     // const proxy = 'https://cryptic-headland-94862.herokuapp.com/';
-    
+      
     axios.get(`${proxy}https://food2fork.com/api/search?key=${API_KEY}&trending`)
       .then(response => {
         const fetchedRecipes = [];
@@ -100,13 +96,10 @@ class App extends Component {
       axios.get(`${proxy}https://food2fork.com/api/search?key=${API_KEY}&q=${this.state.keywords}`)
         .then(response => {
           const fetchedRecipes = [];
-          console.log(response);
           response.data.recipes.map(recipe => fetchedRecipes.push(recipe));
           this.props.setRecipes(response.data.recipes);
 
           this.setState({loading: false});
-                
-          //console.log('[STATE RECIPES]:',this.state.recipes);
         })
         .catch(error => {
             console.log(error);
@@ -120,17 +113,13 @@ class App extends Component {
 
   onInputChange = (event) => {
     this.setState({ keywords: event.target.value });
-      
-    //console.log('[State keywords]', this.state.keywords);
   }
 
   render() {
     return (
       <Fragment>
         <Container>
-          {/* <Animated animationIn="zoomIn" animationOut="fadeOut" isVisible={true}> */}
           <header className="App-header">
-            {/* <img src="assets/img/background2.jpg" width="100%" alt=""/> */}
             <div className="app-title">Recipe Finder</div>
             <div className="box">
                                   

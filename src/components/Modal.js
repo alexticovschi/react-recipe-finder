@@ -26,20 +26,15 @@ class MyModal extends Component {
     getRecipe = (id) => {
       //const proxy = 'https://cryptic-headland-94862.herokuapp.com/';
       const proxy = 'https://cors-anywhere.herokuapp.com/';
-
       const API_KEY = '4921fea5b819539cd1fd95afc554ea9e';
 
       this.setState({loading: true});
 
       axios.get(`${proxy}http://food2fork.com/api/get?key=${API_KEY}&rId=${id}`)
         .then(response => {
-          
           const fetchedIngredients = [];
-          //console.log('[Ingredients]',response.data.recipe.ingredients);
           response.data.recipe.ingredients.map(ing => fetchedIngredients.push(ing));
           this.setState({ ingredients: fetchedIngredients });
-          //console.log('[STATE INGREDIENTS]',this.state.ingredients)
-          //console.log('[STATE RECIPES]:',this.state.recipes);
           this.setState({loading: false});
       })
       .catch(error => {
@@ -53,26 +48,18 @@ class MyModal extends Component {
   
     handleShow() {
       this.setState({ show: true, id: this.props.id });
-      //console.log(this.state.id)
       this.getRecipe(this.props.id);
     }
   
     render() {
-      //console.log('[INSIDE Modal.js]',this.props);
-      //console.log('[PROPS RECIPIES]',this.state.recipies);
-      
-      //console.log('[INSIDE Modal.js STATE]',this.state.id);
-      // console.log('[INSIDE Modal.js keywords]',this.props.keywords);
   
       return (
         <div>
-          {/* <Button style={{backgroundColor:"#21a00b", color:"#fff", outline: "none", marginTop:"100px", marginBottom:"0px"}} onClick={this.handleShow} block> */}
           <Button className="btn" style={{backgroundColor:"#21a00b", color:"#fff", outline: "none", marginTop:"22px", marginBottom:"10px"}} onClick={this.handleShow} block>
             View Recipe
           </Button>
           <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Header closeButton style={{backgroundColor: "#9de88f"}}>
-              {/* <Modal.Title></Modal.Title> */}
               <h3 className="text-center"><img className="food_logo" src="assets/img/food-logo.png" height="60px" alt=""/>{this.props.title}</h3>
             </Modal.Header>
             

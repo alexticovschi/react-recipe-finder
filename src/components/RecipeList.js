@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 class RecipeList extends Component {
     
     render() {
-        console.log('this.props', this.props);
         const { recipes, keywords, favorites, addToFavorites } = this.props;
         const limitRecipeTitle = (title, limit = 17) => {
             const newTitle = [];
